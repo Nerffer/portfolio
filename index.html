@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burak Eroğlu - Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Iso&display=swap" rel="stylesheet"> <!-- logo font -->
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <!-- my projects font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- general font for my portfolio -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+    <!-- font for the h1 and h2 headings -->
+    <script src="https://code.iconify.design/2/2.0.4/iconify.min.js"></script> <!-- framework for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- framework for socials in footer -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script> <!-- GSAP core -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+    <!-- ScrambleText plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollSmoother.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/SplitText.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo">&lt;&gt; Nerffer</div>
+        <div>
+            <a href="#welcome">Welcome</a>
+            <a href="#about-me">About Me</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <button id="cvButton">Download CV</button>
+            <label class="switch">
+                <input class="cb" type="checkbox" checked />
+                <span class="toggle">
+                    <span class="left">off</span>
+                    <span class="right">on</span>
+                </span>
+            </label>
+        </div>
+    </div>
+
+    <div class="section-nav">
+        <ul>
+            <li class="active" data-section="welcome"><span class="dot"></span></li>
+            <li data-section="about-me"><span class="dot"></span></li>
+            <li data-section="skills"><span class="dot"></span></li>
+            <li data-section="projects"><span class="dot"></span></li>
+        </ul>
+    </div>
+
+    <section id="welcome" class="welcome">
+        <div class="intro">
+            <p>Hi, I am</p>
+            <p id="nameP">Burak Eroğlu</p>
+            <p>Computer Engineering Student</p>
+            <h1 id="scramble-text">Welcome to my portfolio!</h1>
+        </div>
+
+        <div class="myImageContainer">
+            <img src="media/me.jpeg" alt="A photo of me">
+        </div>
+    </section>
+
+    <section id="about-me" class="about-me">
+        <h2>About Me</h2>
+
+        <div class="info">
+            <p>Hi, I’m Burak Eroğlu, a passionate Computer Engineering student with a strong interest in web
+                development, and UI/UX design.
+                I love creating innovative and user-friendly applications by blending functionality with aesthetics.</p>
+
+            <p>I am constantly improving my skills in JavaScript, and front-end technologies while exploring new trends
+                in software development.
+                My goal is to build efficient, scalable, and visually appealing digital experiences.</p>
+
+            <p>Beyond coding, I enjoy photography, watching series, anime, comic books, playing games, and exploring
+                emerging technologies.</p>
+        </div>
+
+        <div class="schools">
+
+        </div>
+    </section>
+
+    <section id="skills" class="skills">
+        <h2>Skills</h2>
+        <p>"A great project starts with a solid skill set."</p>
+        <p>I am constantly expanding my knowledge in software development, UI/UX design, and artificial intelligence. My
+            expertise includes:</p>
+
+        <div class="skills-container">
+            <div class="skill-card">
+                <span class="iconify" data-icon="logos:java" data-inline="false"></span>
+                <h3>Java</h3>
+                <p>Lorem ipsum dolor sit amet consectetur. Morbi diam nisi nam diam interdum</p>
+            </div>
+            <div class="skill-card">
+                <span class="iconify" data-icon="logos:python" data-inline="false"></span>
+                <h3>Python</h3>
+                <p>Lorem ipsum dolor sit amet consectetur. Morbi diam nisi nam diam interdum</p>
+            </div>
+            <div class="skill-card">
+                <span class="iconify" data-icon="logos:html-5" data-inline="false"></span>
+                <span class="iconify" data-icon="logos:css-3" data-inline="false"></span>
+                <span class="iconify" data-icon="logos:javascript" data-inline="false"></span>
+                <h3>HTML/CSS/JS</h3>
+                <p>Lorem ipsum dolor sit amet consectetur. Morbi diam nisi nam diam interdum</p>
+            </div>
+            <div class="skill-card">
+                <span class="iconify" data-icon="logos:figma" data-inline="false"></span>
+                <h3>Figma</h3>
+                <p>Lorem ipsum dolor sit amet consectetur. Morbi diam nisi nam diam interdum</p>
+            </div>
+            <div class="skill-card">
+                <span class="iconify" data-icon="logos:c" data-inline="false"></span>
+                <h3>C</h3>
+                <p>Lorem ipsum dolor sit amet consectetur. Morbi diam nisi nam diam interdum</p>
+            </div>
+            <div class="skill-card">
+                <span class="iconify" data-icon="logos:electron" data-inline="false"></span>
+                <h3>Electron</h3>
+                <p>Lorem ipsum dolor sit amet consectetur. Morbi diam nisi nam diam interdum</p>
+            </div>
+            <div class="skill-card">
+                <span class="iconify" data-icon="logos:bootstrap" data-inline="false"></span>
+                <h3>Bootstrap</h3>
+                <p>Lorem ipsum dolor sit amet consectetur. Morbi diam nisi nam diam interdum</p>
+            </div>
+            <div class="skill-card">
+                <span class="iconify" data-icon="logos:git" data-inline="false"></span>
+                <h3>Git</h3>
+                <p>Lorem ipsum dolor sit amet consectetur. Morbi diam nisi nam diam interdum</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <div class="title-3d">
+            <h2 class="cyan-layer">My projects</h2>
+            <h2 class="red-layer">My projects</h2>
+            <h2 class="main-layer">My projects</h2>
+        </div>
+        <p>I have worked on various projects that reflect my passion for web development.
+            Each project has helped me refine my skills and gain hands-on experience. Here are some of my key projects:
+        </p>
+
+        <div class="projects-container">
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="media/egg-boiling-timer.png" alt="A screenshot from my Egg Boiling Timer project">
+                </div>
+                <h3>Egg Boiling Timer</h3>
+                <p>Lorem ipsum dolor sit amet consectetur. Morbi diam nisi nam diam interdum</p>
+                <div class="project-links">
+                    <a target="_blank" href="" class="preview-btn"><i class="fas fa-play"></i>Preview</a>
+                    <a target="_blank" href="https://github.com/Nerffer/EggBoilingTimer" class="code-btn"><i
+                            class="fas fa-code"></i>Code</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="media/derin-akademi.png" alt="A screenshot from Derin Akademi">
+                </div>
+                <h3>Tübitak - Derin Akademi</h3>
+                <p>Lorem ipsum dolor sit amet consectetur. Morbi diam nisi nam diam interdum</p>
+                <div class="project-links">
+                    <a target="_blank" href="https://derinakademi.com/" class="preview-btn"><i
+                            class="fas fa-play"></i>Preview</a>
+                    <a target="_blank" href="" class="code-btn"><i class="fas fa-code"></i>Code</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="media/dice-coin.png" alt="A screenshot from my dice&coin project">
+                </div>
+                <h3>Dice & Coin</h3>
+                <p>Lorem ipsum dolor sit amet consectetur. Morbi diam nisi nam diam interdum</p>
+                <div class="project-links">
+                    <a target="_blank" href="" class="preview-btn"><i class="fas fa-play"></i>Preview</a>
+                    <a target="_blank" href="https://github.com/Nerffer/rollDice-tossCoin" class="code-btn"><i
+                            class="fas fa-code"></i>Code</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="media/frames.png" alt="A screenshot from my photo gallery page    t Hungary project">
+                </div>
+                <h3>Frames of Magyarország</h3>
+                <p>Lorem ipsum dolor sit amet consectetur. Morbi diam nisi nam diam interdum</p>
+                <div class="project-links">
+                    <a target="_blank" href="https://nerffer.github.io/frames-of-magyarorszag/" class="preview-btn"><i
+                            class="fas fa-play"></i>Preview</a>
+                    <a target="_blank" href="https://github.com/Nerffer/frames-of-magyarorszag" class="code-btn"><i
+                            class="fas fa-code"></i>Code</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="media/matrix-multiplication.png"
+                        alt="A screenshot from my Matrix Multiplication Visualization project">
+                </div>
+                <h3>Matrix Multiplication Visualization</h3>
+                <p>Lorem ipsum dolor sit amet consectetur. Morbi diam nisi nam diam interdum</p>
+                <div class="project-links">
+                    <a target="_blank" href="https://nerffer.github.io/matrixMultiplicationVisualization/"
+                        class="preview-btn"><i class="fas fa-play"></i>Preview</a>
+                    <a target="_blank" href="https://github.com/Nerffer/matrixMultiplicationVisualization"
+                        class="code-btn"><i class="fas fa-code"></i>Code</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-img">
+                    <img src="media/3d-book.png" alt="A screenshot from my 3D Book project">
+                </div>
+                <h3>3D Book Animation</h3>
+                <p>Lorem ipsum dolor sit amet consectetur. Morbi diam nisi nam diam interdum</p>
+                <div class="project-links">
+                    <a target="_blank" href="" class="preview-btn"><i class="fas fa-play"></i>Preview</a>
+                    <a target="_blank" href="https://github.com/Nerffer/3d-book-animation" class="code-btn"><i
+                            class="fas fa-code"></i>Code</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="slide-up-footer">
+            <div class="footer-handle"></div>
+            <div class="footer-content">
+              <div class="footer-links">
+                <a href="#welcome">Welcome</a>
+                <a href="#about-me">About Me</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Projects</a>
+              </div>
+              
+              <div class="footer-socials">
+                <a target="_blank" href="https://github.com/Nerffer" class="social-icon"><i class="fab fa-github"></i></a>
+                <a target="_blank" href="https://www.linkedin.com/in/burak-ero%C4%9Flu-8918a523b/" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                <a target="_blank" href="https://www.instagram.com/buraakerogluu/" class="social-icon"><i class="fab fa-instagram"></i></a>
+              </div>
+            </div>
+          </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
