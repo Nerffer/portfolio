@@ -1,36 +1,87 @@
-// Footer slide-up functionality
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
+    // Theme toggle functionality
+    const themeToggle = document.querySelector('.switch input[type="checkbox"]');
+
+    // Check for saved theme preference
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        themeToggle.checked = false;
+    } else if (savedTheme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        if (themeToggle) themeToggle.checked = true;
+    } else {
+        // If no saved preference, check system preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            if (themeToggle) themeToggle.checked = false;
+        } else {
+            document.documentElement.setAttribute('data-theme', 'light');
+            if (themeToggle) themeToggle.checked = true;
+        }
+    }
+
+    // Handle theme toggle
+    themeToggle.addEventListener('change', function () {
+        if (this.checked) {
+            document.documentElement.removeAttribute('data-theme');
+            localStorage.setItem('theme', 'light');
+        } else {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            localStorage.setItem('theme', 'dark');
+        }
+    });
+
+    const cvButton = document.getElementById("cvButton");
+
+    if (cvButton) {
+        cvButton.addEventListener("click", function () {
+            // Create a link element
+            const link = document.createElement("a");
+
+            link.href = "media/cv.pdf";
+
+            link.download = "Burak_Eroğlu_CV.pdf"; // This will be the suggested filename when downloading
+
+            // Append to the body
+            document.body.appendChild(link);
+            link.click();
+
+            // Remove the link from the DOM
+            document.body.removeChild(link);
+        });
+    }
+
     const footer = document.querySelector('.slide-up-footer');
     const handle = document.querySelector('.footer-handle');
-    
+
     // Toggle on handle click
-    handle.addEventListener('click', function() {
-      footer.classList.toggle('active');
+    handle.addEventListener('click', function () {
+        footer.classList.toggle('active');
     });
-    
+
     // Close when clicking outside
-    document.addEventListener('click', function(e) {
-      if (!footer.contains(e.target) && footer.classList.contains('active')) {
-        footer.classList.remove('active');
-      }
+    document.addEventListener('click', function (e) {
+        if (!footer.contains(e.target) && footer.classList.contains('active')) {
+            footer.classList.remove('active');
+        }
     });
-    
+
     // Show footer when scrolling to bottom of page
-    window.addEventListener('scroll', function() {
-      const scrollPosition = window.scrollY;
-      const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
-      
-      if (scrollPosition + windowHeight >= documentHeight - 100) {
-        footer.classList.add('active');
-      } else if (footer.classList.contains('active') && !footer.matches(':hover')) {
-        footer.classList.remove('active');
-      }
+    window.addEventListener('scroll', function () {
+        const scrollPosition = window.scrollY;
+        const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
+
+        if (scrollPosition + windowHeight >= documentHeight - 100) {
+            footer.classList.add('active');
+        } else if (footer.classList.contains('active') && !footer.matches(':hover')) {
+            footer.classList.remove('active');
+        }
     });
-  });
+});
 
 document.addEventListener("DOMContentLoaded", function () {
-    // Register GSAP plugins
     gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
     // Text scramble effect for welcome section
@@ -56,7 +107,6 @@ document.addEventListener("DOMContentLoaded", function () {
             return Array(length).fill().map(getRandomChar).join("");
         }
 
-        // Animation interval
         const interval = setInterval(() => {
             frame++;
 
@@ -79,105 +129,104 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 1500 / fps);
     }
 
-// Set up section scrolling
-function setupSectionScrolling() {
-    const sections = document.querySelectorAll('section, footer');
-    const navItems = document.querySelectorAll('.section-nav li');
-    let isScrolling = false; // Flag to prevent snap interference
-    
-    // Create ScrollTrigger for each section
-    sections.forEach((section, index) => {
-        ScrollTrigger.create({
-            trigger: section,
-            start: 'top 40%', 
-            end: 'bottom 40%',
-            onEnter: () => updateActiveNav(index),
-            onEnterBack: () => updateActiveNav(index)
-        });
-    });
-    
-    // Update active navigation item
-    function updateActiveNav(index) {
-        navItems.forEach(item => item.classList.remove('active'));
-        if (navItems[index]) {
-            navItems[index].classList.add('active');
-        }
-    }
-    
-    // Set up click handlers for navigation
-    navItems.forEach((item, index) => {
-        item.addEventListener('click', (e) => {
-            e.preventDefault();
-            
-            // Set flag to prevent snap interference
-            isScrolling = true;
-            
-            // Get exact top position of target section
-            const targetPosition = sections[index].offsetTop;
-            
-            // Scroll to exact section position
-            gsap.to(window, {
-                duration: 0.8,
-                scrollTo: {
-                    y: targetPosition,
-                    autoKill: true
-                },
-                ease: 'power2.out',
-                onComplete: () => {
-                    // Reset flag after animation completes
-                    setTimeout(() => {
-                        isScrolling = false;
-                    }, 100);
-                }
+    function setupSectionScrolling() {
+        const sections = document.querySelectorAll('section, footer');
+        const navItems = document.querySelectorAll('.section-nav li');
+        let isScrolling = false;
+
+        // Create ScrollTrigger for each section
+        sections.forEach((section, index) => {
+            ScrollTrigger.create({
+                trigger: section,
+                start: 'top 40%',
+                end: 'bottom 40%',
+                onEnter: () => updateActiveNav(index),
+                onEnterBack: () => updateActiveNav(index)
             });
         });
-    });
-    
-    // Setup gentler scroll snapping between sections
-    // Only activate when not manually navigating
-    let snapScrollTrigger = ScrollTrigger.create({
-        snap: {
-            snapTo: (value, self) => {
-                // Skip snapping if we're in the middle of a click navigation
-                if (isScrolling) return value;
-                
-                // Find the closest section
-                const snapPoints = sections.map(section => 
-                    ScrollTrigger.create({trigger: section}).start / 
-                    (document.documentElement.scrollHeight - window.innerHeight)
-                );
-                
-                return snapPoints.reduce((prev, curr) => 
-                    Math.abs(curr - value) < Math.abs(prev - value) ? curr : prev
-                );
-            },
-            duration: 0.3,
-            delay: 0.1,
-            ease: 'power2.out'
-        }
-    });
-    
-    // Disable snap during manual scrolling
-    window.addEventListener('wheel', () => {
-        isScrolling = true;
-        clearTimeout(window.scrollTimeout);
-        window.scrollTimeout = setTimeout(() => {
-            isScrolling = false;
-        }, 150);
-    });
-    
-    // Disable snap during touch scrolling on mobile
-    window.addEventListener('touchmove', () => {
-        isScrolling = true;
-        clearTimeout(window.scrollTimeout);
-        window.scrollTimeout = setTimeout(() => {
-            isScrolling = false;
-        }, 150);
-    });
-}
 
-// Call the function to initialize
-setupSectionScrolling();
+        // Update active navigation item
+        function updateActiveNav(index) {
+            navItems.forEach(item => item.classList.remove('active'));
+            if (navItems[index]) {
+                navItems[index].classList.add('active');
+            }
+        }
+
+        // Set up click handlers for navigation
+        navItems.forEach((item, index) => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                // Set flag to prevent snap interference
+                isScrolling = true;
+
+                // Get exact top position of target section
+                const targetPosition = sections[index].offsetTop;
+
+                // Scroll to exact section position
+                gsap.to(window, {
+                    duration: 0.8,
+                    scrollTo: {
+                        y: targetPosition,
+                        autoKill: true
+                    },
+                    ease: 'power2.out',
+                    onComplete: () => {
+                        // Reset flag after animation completes
+                        setTimeout(() => {
+                            isScrolling = false;
+                        }, 100);
+                    }
+                });
+            });
+        });
+
+        // Setup gentler scroll snapping between sections
+        // Only activate when not manually navigating
+        let snapScrollTrigger = ScrollTrigger.create({
+            snap: {
+                snapTo: (value, self) => {
+                    // Skip snapping if we're in the middle of a click navigation
+                    if (isScrolling) return value;
+
+                    // Find the closest section
+                    const snapPoints = sections.map(section =>
+                        ScrollTrigger.create({ trigger: section }).start /
+                        (document.documentElement.scrollHeight - window.innerHeight)
+                    );
+
+                    return snapPoints.reduce((prev, curr) =>
+                        Math.abs(curr - value) < Math.abs(prev - value) ? curr : prev
+                    );
+                },
+                duration: 0.3,
+                delay: 0.1,
+                ease: 'power2.out'
+            }
+        });
+
+        // Disable snap during manual scrolling
+        window.addEventListener('wheel', () => {
+            isScrolling = true;
+            clearTimeout(window.scrollTimeout);
+            window.scrollTimeout = setTimeout(() => {
+                isScrolling = false;
+            }, 150);
+        });
+
+        // Disable snap during touch scrolling on mobile
+        window.addEventListener('touchmove', () => {
+            isScrolling = true;
+            clearTimeout(window.scrollTimeout);
+            window.scrollTimeout = setTimeout(() => {
+                isScrolling = false;
+            }, 150);
+        });
+    }
+
+    // Call the function to initialize
+    setupSectionScrolling();
 
     // 3D text effect for project section title
     const title3d = document.querySelector('.title-3d');
@@ -230,8 +279,6 @@ setupSectionScrolling();
         });
     }
 
-
-
     // Welcome section
     gsap.from("#welcome .intro", {
         scrollTrigger: {
@@ -243,19 +290,6 @@ setupSectionScrolling();
         x: -100,
         opacity: 0,
         duration: 1
-    });
-
-    gsap.from("#welcome .myImageContainer", {
-        scrollTrigger: {
-            trigger: "#welcome",
-            start: "top 80%",
-            end: "bottom 20%",
-            toggleActions: "play none none reverse"
-        },
-        x: 100,
-        opacity: 0,
-        duration: 1,
-        delay: 0.3
     });
 
     // About Me section animations
@@ -280,6 +314,19 @@ setupSectionScrolling();
         opacity: 0,
         stagger: 0.2,
         duration: 0.6
+    });
+
+    gsap.from("#about-me .myImageContainer", {
+        scrollTrigger: {
+            trigger: "#welcome",
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse"
+        },
+        x: 100,
+        opacity: 0,
+        duration: 1,
+        delay: 0.3
     });
 
     // Skills section animations
@@ -385,24 +432,4 @@ setupSectionScrolling();
 
     // Add line animations for visual interest
     const sections = document.querySelectorAll("section");
-
-    sections.forEach((section, index) => {
-        // Create a line element for each section
-        const line = document.createElement("div");
-        line.className = `line line-${index + 1}`;
-        section.prepend(line);
-
-        // Animate the line as the section enters viewport
-        gsap.from(line, {
-            scrollTrigger: {
-                trigger: section,
-                scrub: true,
-                start: "top bottom",
-                end: "top 30%"
-            },
-            scaleX: 0,
-            transformOrigin: "left center",
-            ease: "none"
-        });
-    });
 });
