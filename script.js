@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function () {    
     // Theme toggle functionality
     const themeToggle = document.querySelector('.switch input[type="checkbox"]');
 
@@ -429,7 +429,4 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
-
-    // Add line animations for visual interest
-    const sections = document.querySelectorAll("section");
 });
