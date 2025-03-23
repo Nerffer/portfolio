@@ -52,6 +52,14 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
+    var animation = lottie.loadAnimation({
+        container: document.getElementById('lottie-container'), // The container for the animation
+        path: 'media/flipping-cat.json', // Replace this with the path to your Lottie file
+        renderer: 'svg',
+        loop: true,
+        autoplay: true
+    });
+
     const footer = document.querySelector('.slide-up-footer');
     const handle = document.querySelector('.footer-handle');
 
@@ -290,6 +298,20 @@ document.addEventListener("DOMContentLoaded", function () {
         x: -100,
         opacity: 0,
         duration: 1
+    });
+
+    // Lottie container animation
+    gsap.from("#welcome .lottie-container", {
+        scrollTrigger: {
+            trigger: "#welcome",
+            start: "top 80%",
+            end: "bottom 20%",
+            toggleActions: "play none none reverse"
+        },
+        x: 100,
+        opacity: 0,
+        duration: 1,
+        delay: 1
     });
 
     // About Me section animations

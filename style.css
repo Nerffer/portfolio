@@ -449,7 +449,7 @@ section {
 /* Welcome Section Styles */
 .welcome {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     padding: 3em 10% 1em;
     min-height: 80vh;
@@ -482,6 +482,18 @@ section {
     margin-top: 1.5rem;
     line-height: 1.2;
     text-align: left;
+}
+
+#lottie-container {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;  /* Align to the right */
+    padding: 0 0.625em;
+    margin-bottom: 20vh;
+    max-width: 400px;  /* Limit the maximum width */
+    max-height: 400px; /* Limit the maximum height */
+    width: 100%;
+    height: auto;
 }
 
 /* Responsive styles for welcome section */
@@ -546,7 +558,7 @@ section {
 
 /* About Me Section Styles */
 .about-me {
-    padding: 1rem 8% 2rem;
+    padding: 4rem 8% 2rem;
     position: relative;
     display: flex;
     flex-wrap: wrap;
@@ -557,7 +569,7 @@ section {
 .about-me h2 {
     font-size: 2.5rem;
     color: var(--text-color);
-    margin-bottom: -25vh;
+    margin-bottom: 2vh;
     width: 100%;
 }
 
@@ -586,6 +598,20 @@ section {
     width: 100%;
     max-width: 700px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.schools {
+    width: 100%;
+    margin: 2rem 0;
+    overflow-x: auto;
+    margin-top: 2rem;
+}
+
+.schools img {
+    width: 100%;
+    max-width: 800px;
+    display: block;
+    margin: 0 auto;
 }
 
 /* Responsive styles for about me section */
