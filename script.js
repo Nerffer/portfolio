@@ -2,14 +2,32 @@ document.addEventListener('DOMContentLoaded', function () {
     // Theme toggle functionality
     const themeToggle = document.querySelector('.switch input[type="checkbox"]');
 
+    // Function to update images based on theme
+    function updateSchoolImages() {
+        const schoolImages = document.querySelectorAll('.schools img');
+        if (document.documentElement.getAttribute('data-theme') === 'dark') {
+            schoolImages.forEach(img => {
+                // Change to dark mode images
+                img.src = img.getAttribute('data-dark');
+            });
+        } else {
+            schoolImages.forEach(img => {
+                // Change to light mode images
+                img.src = img.getAttribute('data-light');
+            });
+        }
+    }
+
     // Check for saved theme preference
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
         document.documentElement.setAttribute('data-theme', 'dark');
         themeToggle.checked = false;
+        updateSchoolImages();
     } else if (savedTheme === 'light') {
         document.documentElement.setAttribute('data-theme', 'light');
         if (themeToggle) themeToggle.checked = true;
+        updateSchoolImages();
     } else {
         // If no saved preference, check system preference
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -19,6 +37,7 @@ document.addEventListener('DOMContentLoaded', function () {
             document.documentElement.setAttribute('data-theme', 'light');
             if (themeToggle) themeToggle.checked = true;
         }
+        updateSchoolImages();
     }
 
     // Handle theme toggle
@@ -30,6 +49,7 @@ document.addEventListener('DOMContentLoaded', function () {
             document.documentElement.setAttribute('data-theme', 'dark');
             localStorage.setItem('theme', 'dark');
         }
+        updateSchoolImages();
     });
 
     const cvButton = document.getElementById("cvButton");
